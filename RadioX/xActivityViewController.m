@@ -1,26 +1,26 @@
 //
-//  SecondViewController.m
+//  xActivityViewController.m
 //  RadioX
 //
-//  Created by witawat wanamonthon on 10/14/12.
+//  Created by witawat wanamonthon on 10/20/12.
 //  Copyright (c) 2012 witawat wanamonthon. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "xActivityViewController.h"
 #import "DetailViewController.h"
 #import "SBJson.h"
 
-@interface SecondViewController ()
+@interface xActivityViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation xActivityViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xnews"];
+	// Do any additional setup after loading the view.
+    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xactivity"];
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
     
@@ -32,15 +32,9 @@
     int i = 0;
     while (i < [responseDict count]) {
         UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",i+1]] objectForKey:@"thumbnail"]]]]];
-        [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(tempImage) forKey:[NSString stringWithFormat:@"imageFor%d",i]];
+        [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(tempImage) forKey:[NSString stringWithFormat:@"imageForxActivity%d",i]];
         i++;
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -54,8 +48,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     UIImageView *imageViews = (UIImageView*)[cell viewWithTag:1];
-    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"imageFor%d",indexPath.row]];
+    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"imageForxActivity%d",indexPath.row]];
     [imageViews setImage:[UIImage imageWithData:imageData]];
+    // [imageViews setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"thumbnail"]]]]]];
     UILabel *title = (UILabel*)[cell viewWithTag:2];
     [title setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"title"]]];
     UILabel *intro = (UILabel*)[cell viewWithTag:3];
@@ -67,6 +62,12 @@
     DetailViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"Detail"];
     [detailView setTextString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"content"]]];
     [self.navigationController pushViewController:detailView animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (NSString *)performStoreRequestWithURL:(NSURL *)url

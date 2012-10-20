@@ -18,6 +18,11 @@
 }
 @property (weak, nonatomic) IBOutlet UILabel *SongPlayNameOutlet;
 @property (weak, nonatomic) IBOutlet UINavigationItem *logoOutlet;
+@property (weak, nonatomic) IBOutlet UILabel *djName;
+@property (weak, nonatomic) IBOutlet UILabel *ProgramAir;
+@property (weak, nonatomic) IBOutlet UIImageView *djImage;
+- (IBAction)smsButtonPress:(id)sender;
+- (IBAction)facebookButtonPress:(id)sender;
 - (IBAction)PlayButtonPress:(id)sender;
 
 @end

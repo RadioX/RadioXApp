@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "SBJson.h"
 
 @interface FirstViewController ()
 
@@ -24,6 +25,13 @@
     
     [self.logoOutlet setTitleView:imageView];
     isPlaying = NO;
+    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/dj"];
+    NSString *jsonString = [self performStoreRequestWithURL:url];
+    NSDictionary *jsonDict = [jsonString JSONValue];
+    NSLog(@"%@",[jsonDict objectForKey:@"1"]);
+    [self.djImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:@"1"] objectForKey:@"image"]]]]]];
+    [self.djName setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:@"1"]objectForKey:@"first_name"]]];
+    [self.ProgramAir setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:@"1"]objectForKey:@"showtime"]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,18 +40,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)smsButtonPress:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms://466453"]];
+}
+
+- (IBAction)facebookButtonPress:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.facebook.com/87.5RadioXStation"]];
+}
+
 - (IBAction)PlayButtonPress:(id)sender {
     if (!isPlaying) {
         //player = [AVPlayer playerWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://radio.thaisphost.com:8100/;stream.nsv"]]];
         [player play];
         playerItems = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://radio.thaisphost.com:8100/;stream.nsv"]]];
         [playerItems addObserver:self forKeyPath:@"timedMetadata" options:NSKeyValueObservingOptionNew context:nil];
-//        NSArray *metadataList = [playerItem.asset commonMetadata];
-//        NSLog(@"%@",[playerItem.asset commonMetadata]);
-//        
-//        for (AVMetadataItem *metaItme in metadataList) {
-//            NSLog(@"%@",[metaItme commonKey]);
-//        }
         player = [AVPlayer playerWithPlayerItem:playerItems];
         [player play];
         
@@ -73,4 +83,16 @@
         }
     }
 }
+
+- (NSString *)performStoreRequestWithURL:(NSURL *)url
+{
+    NSError *error;
+    NSString *resultString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+    if (resultString == nil) {
+        NSLog(@"Download Error: %@", error);
+        return nil;
+    }
+    return resultString;
+}
+
 @end
