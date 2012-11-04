@@ -13,7 +13,7 @@
 @end
 
 @implementation DetailViewController
-@synthesize viewContent,textString;
+@synthesize webViews,textString;
 
 
 - (void)viewDidLoad
@@ -23,7 +23,11 @@
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
     [self.logoOutlet setTitleView:imageView];
-    self.viewContent.text = textString;
+    NSURL *url = [NSURL URLWithString:textString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webViews loadRequest:request];
+    [webViews setScalesPageToFit:YES];
+    [webViews sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning

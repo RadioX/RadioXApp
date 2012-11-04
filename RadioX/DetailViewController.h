@@ -10,7 +10,7 @@
 
 @interface DetailViewController : UIViewController
 - (IBAction)backButtonPress:(id)sender;
+@property (weak, nonatomic) IBOutlet UIWebView *webViews;
 @property (nonatomic, retain) NSString *textString;
-@property (weak, nonatomic) IBOutlet UITextView *viewContent;
 @property (weak, nonatomic) IBOutlet UINavigationItem *logoOutlet;
 @end

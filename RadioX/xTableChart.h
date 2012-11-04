@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface xTableChart : UIViewController
+@interface xTableChart : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+    
+    NSMutableDictionary *jsonDict;
+}
+@property (weak, nonatomic) IBOutlet UINavigationItem *logoOutlet;
 
 @end

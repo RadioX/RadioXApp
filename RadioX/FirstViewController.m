@@ -34,7 +34,7 @@
     [self.djImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]] objectForKey:@"image"]]]]]];
     [self.djName setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"nick_name"]]];
     [self.ProgramAir setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"showtime"]]];
-   // [self performSelector:@selector(changeDj:) withObject:[NSString stringWithFormat:@"%d",d] afterDelay:5.0];
+    [self performSelector:@selector(changeDj:) withObject:[NSString stringWithFormat:@"%d",d] afterDelay:5.0];
 }
 
 -(void)changeDj:(NSString*)djID{
@@ -53,17 +53,6 @@
      
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/dj"];
-    NSString *jsonString = [self performStoreRequestWithURL:url];
-    NSDictionary *jsonDict = [jsonString JSONValue];
-    int d = arc4random()%[jsonDict count];
-    [self.djImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]] objectForKey:@"image"]]]]]];
-    [self.djName setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"nick_name"]]];
-    [self.ProgramAir setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"showtime"]]];
-    [self performSelector:@selector(changeDj:) withObject:[NSString stringWithFormat:@"%d",d] afterDelay:5.0];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -80,7 +69,6 @@
 
 - (IBAction)PlayButtonPress:(id)sender {
     if (!isPlaying) {
-        //player = [AVPlayer playerWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://radio.thaisphost.com:8100/;stream.nsv"]]];
         [player play];
         playerItems = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://radio.thaisphost.com:8100/;stream.nsv"]]];
         [playerItems addObserver:self forKeyPath:@"timedMetadata" options:NSKeyValueObservingOptionNew context:nil];

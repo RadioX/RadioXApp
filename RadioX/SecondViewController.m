@@ -65,7 +65,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailViewController *detailView = [self.storyboard instantiateViewControllerWithIdentifier:@"Detail"];
-    [detailView setTextString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"content"]]];
+    [detailView setTextString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"link"]]];
     [self.navigationController pushViewController:detailView animated:YES];
 }
 
