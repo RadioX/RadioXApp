@@ -15,6 +15,7 @@
     AVPlayer *player;
     AVPlayerItem  *playerItems;
     BOOL isPlaying;
+    int DjNumber;
 }
 @property (weak, nonatomic) IBOutlet UILabel *SongPlayNameOutlet;
 @property (weak, nonatomic) IBOutlet UINavigationItem *logoOutlet;

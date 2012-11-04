@@ -25,6 +25,7 @@
 		9A55721C1632772E00C77B19 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A55720E1632772E00C77B19 /* SBJsonTokeniser.m */; };
 		9A55721D1632772E00C77B19 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5572101632772E00C77B19 /* SBJsonUTF8Stream.m */; };
 		9A55721E1632772E00C77B19 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5572121632772E00C77B19 /* SBJsonWriter.m */; };
+		9A5E3B7E164629B900A7AFBC /* xTableChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5E3B7D164629B900A7AFBC /* xTableChart.m */; };
 		9A7A5280162AD25A00348379 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7A527F162AD25A00348379 /* UIKit.framework */; };
 		9A7A5282162AD25A00348379 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7A5281162AD25A00348379 /* Foundation.framework */; };
 		9A7A5284162AD25A00348379 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7A5283162AD25A00348379 /* CoreGraphics.framework */; };
@@ -83,6 +84,8 @@
 		9A5572101632772E00C77B19 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		9A5572111632772E00C77B19 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		9A5572121632772E00C77B19 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		9A5E3B7C164629B900A7AFBC /* xTableChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xTableChart.h; sourceTree = "<group>"; };
+		9A5E3B7D164629B900A7AFBC /* xTableChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xTableChart.m; sourceTree = "<group>"; };
 		9A7A527B162AD25A00348379 /* RadioX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7A527F162AD25A00348379 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A7A5281162AD25A00348379 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -202,6 +205,8 @@
 				9A7A528E162AD25A00348379 /* AppDelegate.h */,
 				9A7A528F162AD25A00348379 /* AppDelegate.m */,
 				9A7A5297162AD25B00348379 /* MainStoryboard.storyboard */,
+				9A5E3B7C164629B900A7AFBC /* xTableChart.h */,
+				9A5E3B7D164629B900A7AFBC /* xTableChart.m */,
 				9AE74F2D163292A300A5515C /* xActivityViewController.h */,
 				9AE74F2E163292A300A5515C /* xActivityViewController.m */,
 				9A7A529A162AD25B00348379 /* FirstViewController.h */,
@@ -348,6 +353,7 @@
 				9A55721E1632772E00C77B19 /* SBJsonWriter.m in Sources */,
 				9AE74F2F163292A300A5515C /* xActivityViewController.m in Sources */,
 				9AE74F331632966700A5515C /* DetailViewController.m in Sources */,
+				9A5E3B7E164629B900A7AFBC /* xTableChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

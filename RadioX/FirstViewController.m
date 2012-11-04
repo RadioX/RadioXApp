@@ -28,10 +28,40 @@
     NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/dj"];
     NSString *jsonString = [self performStoreRequestWithURL:url];
     NSDictionary *jsonDict = [jsonString JSONValue];
-    NSLog(@"%@",[jsonDict objectForKey:@"1"]);
-    [self.djImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:@"1"] objectForKey:@"image"]]]]]];
-    [self.djName setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:@"1"]objectForKey:@"first_name"]]];
-    [self.ProgramAir setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:@"1"]objectForKey:@"showtime"]]];
+   // NSLog(@"%@",jsonDict );
+    int d = (arc4random()%[jsonDict count])+1;
+    DjNumber = [jsonDict count];
+    [self.djImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]] objectForKey:@"image"]]]]]];
+    [self.djName setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"nick_name"]]];
+    [self.ProgramAir setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"showtime"]]];
+   // [self performSelector:@selector(changeDj:) withObject:[NSString stringWithFormat:@"%d",d] afterDelay:5.0];
+}
+
+-(void)changeDj:(NSString*)djID{
+    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/dj"];
+    NSString *jsonString = [self performStoreRequestWithURL:url];
+    NSDictionary *jsonDict = [jsonString JSONValue];
+    int number = [djID intValue];
+    int randomNumber = (arc4random()%DjNumber)+1;
+    while (number == randomNumber) {
+        randomNumber = (arc4random()%DjNumber)+1;
+    }
+    [self.djImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",randomNumber]] objectForKey:@"image"]]]]]];
+    [self.djName setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",randomNumber]]objectForKey:@"nick_name"]]];
+    [self.ProgramAir setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",randomNumber]]objectForKey:@"showtime"]]];
+     [self performSelector:@selector(changeDj:) withObject:[NSString stringWithFormat:@"%d",randomNumber] afterDelay:5.0];
+     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/dj"];
+    NSString *jsonString = [self performStoreRequestWithURL:url];
+    NSDictionary *jsonDict = [jsonString JSONValue];
+    int d = arc4random()%[jsonDict count];
+    [self.djImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]] objectForKey:@"image"]]]]]];
+    [self.djName setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"nick_name"]]];
+    [self.ProgramAir setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"showtime"]]];
+    [self performSelector:@selector(changeDj:) withObject:[NSString stringWithFormat:@"%d",d] afterDelay:5.0];
 }
 
 - (void)didReceiveMemoryWarning
