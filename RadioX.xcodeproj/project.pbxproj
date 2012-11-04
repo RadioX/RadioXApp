@@ -67,6 +67,7 @@
 		9A7A52B4162AD59E00348379 /* smsbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A7A52B0162AD59E00348379 /* smsbutton.png */; };
 		9A7A52BB162ADA0B00348379 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7A52BA162ADA0B00348379 /* AVFoundation.framework */; };
 		9A7A52BD162ADA1000348379 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7A52BC162ADA1000348379 /* MediaPlayer.framework */; };
+		9AC802191646C5EF00067334 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC802181646C5EF00067334 /* AudioToolbox.framework */; };
 		9AE74F2F163292A300A5515C /* xActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE74F2E163292A300A5515C /* xActivityViewController.m */; };
 		9AE74F331632966700A5515C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE74F321632966700A5515C /* DetailViewController.m */; };
 /* End PBXBuildFile section */
@@ -152,6 +153,7 @@
 		9A7A52B0162AD59E00348379 /* smsbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smsbutton.png; sourceTree = "<group>"; };
 		9A7A52BA162ADA0B00348379 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9A7A52BC162ADA1000348379 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		9AC802181646C5EF00067334 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9AE74F2D163292A300A5515C /* xActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xActivityViewController.h; sourceTree = "<group>"; };
 		9AE74F2E163292A300A5515C /* xActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xActivityViewController.m; sourceTree = "<group>"; };
 		9AE74F311632966700A5515C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC802191646C5EF00067334 /* AudioToolbox.framework in Frameworks */,
 				9A7A52BD162ADA1000348379 /* MediaPlayer.framework in Frameworks */,
 				9A7A52BB162ADA0B00348379 /* AVFoundation.framework in Frameworks */,
 				9A7A5280162AD25A00348379 /* UIKit.framework in Frameworks */,
@@ -209,6 +212,7 @@
 		9A7A5270162AD25A00348379 = {
 			isa = PBXGroup;
 			children = (
+				9AC802181646C5EF00067334 /* AudioToolbox.framework */,
 				9A7A52BC162ADA1000348379 /* MediaPlayer.framework */,
 				9A7A52BA162ADA0B00348379 /* AVFoundation.framework */,
 				9A7A5285162AD25A00348379 /* RadioX */,

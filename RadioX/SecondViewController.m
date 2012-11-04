@@ -28,7 +28,6 @@
     NSString *jsonString = [self performStoreRequestWithURL:url];
     NSDictionary *responseDict = [jsonString JSONValue];
     jsonDict = [[NSMutableDictionary alloc] initWithDictionary:responseDict copyItems:YES];
-    NSLog(@"%@",jsonDict);
     int i = 0;
     while (i < [responseDict count]) {
         UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",i+1]] objectForKey:@"thumbnail"]]]]];

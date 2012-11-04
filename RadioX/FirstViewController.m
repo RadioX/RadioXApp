@@ -28,13 +28,20 @@
     NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/dj"];
     NSString *jsonString = [self performStoreRequestWithURL:url];
     NSDictionary *jsonDict = [jsonString JSONValue];
-   // NSLog(@"%@",jsonDict );
     int d = (arc4random()%[jsonDict count])+1;
     DjNumber = [jsonDict count];
     [self.djImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]] objectForKey:@"image"]]]]]];
     [self.djName setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"nick_name"]]];
     [self.ProgramAir setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",d]]objectForKey:@"showtime"]]];
     [self performSelector:@selector(changeDj:) withObject:[NSString stringWithFormat:@"%d",d] afterDelay:5.0];
+}
+
+-(BOOL)shouldAutorotate{
+    return false;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 -(void)changeDj:(NSString*)djID{
@@ -74,12 +81,14 @@
         [playerItems addObserver:self forKeyPath:@"timedMetadata" options:NSKeyValueObservingOptionNew context:nil];
         player = [AVPlayer playerWithPlayerItem:playerItems];
         [player play];
-        
+        [self.playbuttonOutlet setImage:[UIImage imageNamed:@"pausebutton.png"] forState:UIControlStateNormal];
         isPlaying = YES;
+        
     }
     else {
         [player pause];
         [playerItems removeObserver:self forKeyPath:@"timedMetadata" context:nil];
+        [self.playbuttonOutlet setImage:[UIImage imageNamed:@"playbutton.png"] forState:UIControlStateNormal];
         isPlaying = NO;
     }
 }

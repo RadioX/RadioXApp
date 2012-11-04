@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *djName;
 @property (weak, nonatomic) IBOutlet UILabel *ProgramAir;
 @property (weak, nonatomic) IBOutlet UIImageView *djImage;
+@property (weak, nonatomic) IBOutlet UIButton *playbuttonOutlet;
 - (IBAction)smsButtonPress:(id)sender;
 - (IBAction)facebookButtonPress:(id)sender;
 - (IBAction)PlayButtonPress:(id)sender;
