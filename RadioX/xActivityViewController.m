@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xactivity"];
+    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xactivity/5"];
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
     

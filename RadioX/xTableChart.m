@@ -53,13 +53,13 @@
     UIImageView *statusImage = (UIImageView*)[cell viewWithTag:5];
     NSString *statusString = [NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"status"]];
     if ([statusString isEqualToString:@"down"]) {
-        [statusImage setImage:[UIImage imageNamed:@"down.png"]];
+        [statusImage setImage:[UIImage imageNamed:@"down-new.png"]];
     }else if([statusString isEqualToString:@"up"]) {
-        [statusImage setImage:[UIImage imageNamed:@"up.png"]];
+        [statusImage setImage:[UIImage imageNamed:@"up-new.png"]];
     }else if([statusString isEqualToString:@"stable"]) {
-        [statusImage setImage:[UIImage imageNamed:@"stable.png"]];
+        [statusImage setImage:[UIImage imageNamed:@"stable-new.png"]];
     }else if([statusString isEqualToString:@"new"]) {
-        [statusImage setImage:[UIImage imageNamed:@"new.png"]];
+        [statusImage setImage:[UIImage imageNamed:@"new-new.png"]];
     }
     return cell;
 }
