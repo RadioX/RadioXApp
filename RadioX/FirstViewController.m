@@ -67,7 +67,7 @@
 }
 
 - (IBAction)smsButtonPress:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms://466453"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms://4535533"]];
 }
 
 - (IBAction)facebookButtonPress:(id)sender {
