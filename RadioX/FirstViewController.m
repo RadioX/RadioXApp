@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "SBJson.h"
+#import "MBProgressHUD.h"
 
 @interface FirstViewController ()
 
@@ -57,6 +58,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (IBAction)smsButtonPress:(id)sender {

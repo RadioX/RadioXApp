@@ -9,6 +9,7 @@
 #import "SecondViewController.h"
 #import "DetailViewController.h"
 #import "SBJson.h"
+#import "MBProgressHUD.h"
 
 @interface SecondViewController ()
 
@@ -20,6 +21,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xnews"];
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
@@ -77,6 +79,7 @@
         NSLog(@"Download Error: %@", error);
         return nil;
     }
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     return resultString;
 }
 

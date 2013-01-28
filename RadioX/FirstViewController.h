@@ -11,7 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-@interface FirstViewController : UIViewController{
+@interface FirstViewController : UIViewController<UITabBarDelegate>{
     AVPlayer *player;
     AVPlayerItem  *playerItems;
     BOOL isPlaying;
