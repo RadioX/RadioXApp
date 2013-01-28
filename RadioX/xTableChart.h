@@ -10,6 +10,7 @@
 
 @interface xTableChart : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     
+    __weak IBOutlet UITableView *tableData;
     NSMutableDictionary *jsonDict;
 }
 @property (weak, nonatomic) IBOutlet UINavigationItem *logoOutlet;

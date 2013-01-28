@@ -97,6 +97,7 @@
                     <navigationItem key="navigationItem" id="mk0-yj-H72"/>
                     <connections>
                         <outlet property="logoOutlet" destination="AYe-uP-wxe" id="S7v-84-glP"/>
+                        <outlet property="tableData" destination="SM3-GF-f6i" id="z7a-0U-2EJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJ1-D0-r5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -165,6 +166,7 @@
                     <navigationItem key="navigationItem" id="aqC-PZ-NoB"/>
                     <connections>
                         <outlet property="logoOutlet" destination="pC9-MX-MEF" id="74n-s9-qYo"/>
+                        <outlet property="tableData" destination="kxE-PJ-nHI" id="jlq-5r-qpb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bUc-xr-aRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -360,6 +362,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="lTu-d4-DnH"/>
                     <connections>
+                        <outlet property="TableData" destination="11u-NC-r3U" id="dkk-b5-lQ6"/>
                         <outlet property="logoOutlet" destination="z3T-NL-t8o" id="4Z0-89-gOe"/>
                     </connections>
                 </viewController>
@@ -497,6 +500,50 @@
         <image name="smsbutton.png" width="53" height="53"/>
         <image name="up-new.png" width="18" height="18"/>
     </resources>
+    <classes>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="outlet" name="logoOutlet" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="webViews" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="FirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="PlayButtonPress:"/>
+                <relationship kind="action" name="facebookButtonPress:"/>
+                <relationship kind="action" name="smsButtonPress:"/>
+                <relationship kind="outlet" name="ProgramAir" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="SongPlayNameOutlet" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="djImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="djName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoOutlet" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="playbuttonOutlet" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="SecondViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="TableData" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="logoOutlet" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="xActivityViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/xActivityViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="logoOutlet" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="tableData" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="xTableChart" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/xTableChart.h"/>
+            <relationships>
+                <relationship kind="outlet" name="logoOutlet" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

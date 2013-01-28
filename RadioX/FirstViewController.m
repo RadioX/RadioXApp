@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "SBJson.h"
+#import "MBProgressHUD.h"
 
 @interface FirstViewController ()
 
@@ -18,7 +19,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 	// Do any additional setup after loading the view, typically from a nib.
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];

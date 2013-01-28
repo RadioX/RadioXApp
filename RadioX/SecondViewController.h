@@ -11,6 +11,7 @@
 @interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     NSMutableDictionary *jsonDict;
     NSMutableArray *jsonArray;
+    __weak IBOutlet UITableView *TableData;
 }
 
 

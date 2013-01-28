@@ -8,6 +8,7 @@
 
 #import "xTableChart.h"
 #import "SBJson.h"
+#import "MBProgressHUD.h"
 
 @interface xTableChart ()
 
@@ -18,11 +19,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/chart"];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [tableData setDelegate:self];
+    [tableData setDataSource:self];
+    [self performSelector:@selector(loadItem) withObject:nil afterDelay:.001];
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
     
     [self.logoOutlet setTitleView:imageView];
+    
+}
+
+-(void)loadItem{
+    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/chart"];
     NSString *jsonString = [self performStoreRequestWithURL:url];
     NSDictionary *responseDict = [jsonString JSONValue];
     jsonDict = [[NSMutableDictionary alloc] initWithDictionary:responseDict copyItems:YES];
@@ -32,6 +41,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(tempImage) forKey:[NSString stringWithFormat:@"imageForTableChart%d",i]];
         i++;
     }
+    [tableData reloadData];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -78,6 +88,7 @@
         NSLog(@"Download Error: %@", error);
         return nil;
     }
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     return resultString;
 }
 @end

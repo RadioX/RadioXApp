@@ -11,6 +11,7 @@
 @interface xActivityViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     NSMutableDictionary *jsonDict;
     NSMutableArray *jsonArray;
+    __weak IBOutlet UITableView *tableData;
 }
 @property (weak, nonatomic) IBOutlet UINavigationItem *logoOutlet;
 

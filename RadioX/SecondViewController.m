@@ -9,6 +9,7 @@
 #import "SecondViewController.h"
 #import "DetailViewController.h"
 #import "SBJson.h"
+#import "MBProgressHUD.h"
 
 @interface SecondViewController ()
 
@@ -20,11 +21,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xnews/5"];
+    [self performSelector:@selector(loadItem) withObject:nil afterDelay:.001];
+    [TableData setDelegate:self];
+    [TableData setDataSource:self];
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.logoOutlet setTitleView:imageView];
+    
+}
+
+-(void)loadItem{
+     NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xnews/5"];
     NSString *jsonString = [self performStoreRequestWithURL:url];
     NSDictionary *responseDict = [jsonString JSONValue];
     jsonDict = [[NSMutableDictionary alloc] initWithDictionary:responseDict copyItems:YES];
@@ -34,7 +42,10 @@
         [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(tempImage) forKey:[NSString stringWithFormat:@"imageFor%d",i]];
         i++;
     }
+    [TableData reloadData];
+
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -76,6 +87,7 @@
         NSLog(@"Download Error: %@", error);
         return nil;
     }
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     return resultString;
 }
 

@@ -40,6 +40,11 @@
 		61E326B316B6446700A9B732 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E326B216B6446700A9B732 /* icon@2x.png */; };
 		9A1B14951632748100527874 /* bg_live@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B14941632748100527874 /* bg_live@2x.png */; };
 		9A1B1497163275A100527874 /* Gradient_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B1496163275A100527874 /* Gradient_background.png */; };
+		9A30802016B64967002B14D6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A30801F16B64967002B14D6 /* MBProgressHUD.m */; };
+		9A30803F16B64A12002B14D6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A30803E16B64A12002B14D6 /* CFNetwork.framework */; };
+		9A30804116B64A33002B14D6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A30804016B64A33002B14D6 /* SystemConfiguration.framework */; };
+		9A30804316B64A3A002B14D6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A30804216B64A3A002B14D6 /* MobileCoreServices.framework */; };
+		9A30804516B64A42002B14D6 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A30804416B64A42002B14D6 /* libz.1.2.5.dylib */; };
 		9A5572131632772E00C77B19 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5571FB1632772E00C77B19 /* NSObject+SBJson.m */; };
 		9A5572141632772E00C77B19 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5571FE1632772E00C77B19 /* SBJsonParser.m */; };
 		9A5572151632772E00C77B19 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5572001632772E00C77B19 /* SBJsonStreamParser.m */; };
@@ -115,6 +120,12 @@
 		61E326B216B6446700A9B732 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		9A1B14941632748100527874 /* bg_live@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_live@2x.png"; sourceTree = "<group>"; };
 		9A1B1496163275A100527874 /* Gradient_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gradient_background.png; sourceTree = "<group>"; };
+		9A30801E16B64967002B14D6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		9A30801F16B64967002B14D6 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		9A30803E16B64A12002B14D6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9A30804016B64A33002B14D6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9A30804216B64A3A002B14D6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9A30804416B64A42002B14D6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		9A5571FA1632772E00C77B19 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		9A5571FB1632772E00C77B19 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		9A5571FC1632772E00C77B19 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -182,6 +193,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A30804516B64A42002B14D6 /* libz.1.2.5.dylib in Frameworks */,
+				9A30804316B64A3A002B14D6 /* MobileCoreServices.framework in Frameworks */,
+				9A30804116B64A33002B14D6 /* SystemConfiguration.framework in Frameworks */,
+				9A30803F16B64A12002B14D6 /* CFNetwork.framework in Frameworks */,
 				9AC802191646C5EF00067334 /* AudioToolbox.framework in Frameworks */,
 				9A7A52BD162ADA1000348379 /* MediaPlayer.framework in Frameworks */,
 				9A7A52BB162ADA0B00348379 /* AVFoundation.framework in Frameworks */,
@@ -197,6 +212,8 @@
 		9A5571F91632771C00C77B19 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				9A30801E16B64967002B14D6 /* MBProgressHUD.h */,
+				9A30801F16B64967002B14D6 /* MBProgressHUD.m */,
 				9A5571FA1632772E00C77B19 /* NSObject+SBJson.h */,
 				9A5571FB1632772E00C77B19 /* NSObject+SBJson.m */,
 				9A5571FC1632772E00C77B19 /* SBJson.h */,
@@ -229,6 +246,10 @@
 		9A7A5270162AD25A00348379 = {
 			isa = PBXGroup;
 			children = (
+				9A30804416B64A42002B14D6 /* libz.1.2.5.dylib */,
+				9A30804216B64A3A002B14D6 /* MobileCoreServices.framework */,
+				9A30804016B64A33002B14D6 /* SystemConfiguration.framework */,
+				9A30803E16B64A12002B14D6 /* CFNetwork.framework */,
 				61E326B216B6446700A9B732 /* icon@2x.png */,
 				61E326B016B6445D00A9B732 /* icon.png */,
 				61E326A916B6418D00A9B732 /* Default.png */,
@@ -468,6 +489,7 @@
 				9AE74F2F163292A300A5515C /* xActivityViewController.m in Sources */,
 				9AE74F331632966700A5515C /* DetailViewController.m in Sources */,
 				9A5E3B7E164629B900A7AFBC /* xTableChart.m in Sources */,
+				9A30802016B64967002B14D6 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
