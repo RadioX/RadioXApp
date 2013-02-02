@@ -9,6 +9,7 @@
 #import "xActivityViewController.h"
 #import "DetailViewController.h"
 #import "SBJson.h"
+#import "ASIHTTPRequest.h"
 #import "MBProgressHUD.h"
 
 @interface xActivityViewController ()
@@ -21,29 +22,49 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [tableData setDataSource:self];
     [tableData setDelegate:self];
-    [self performSelector:@selector(loadItem) withObject:nil afterDelay:.001];
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
-    
     [self.logoOutlet setTitleView:imageView];
+    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xactivity/5"];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request startAsynchronous];
     
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    if (request.responseStatusCode == 400) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Code 400 " delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:@"Cancel",nil ];
+        [alert show];
+    } else if (request.responseStatusCode == 403) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Code already used" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:@"Cancel",nil ];
+        [alert show];
+    } else if (request.responseStatusCode == 200) {
+        NSString *jsonString = [request responseString];
+        NSLog(@"%@",jsonString);
+        NSDictionary *responseDict = [jsonString JSONValue];
+        jsonDict = [[NSMutableDictionary alloc] initWithDictionary:responseDict copyItems:YES];
+//        int i = 0;
+//        while (i < [responseDict count]) {
+//            UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",i+1]] objectForKey:@"thumbnail"]]]]];
+//            [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(tempImage) forKey:[NSString stringWithFormat:@"imageForxActivity%d",i]];
+//            i++;
+//        }
+        [tableData reloadData];
+
+    }
 }
 -(void)loadItem{
  NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/xactivity/5"];
     NSString *jsonString = [self performStoreRequestWithURL:url];
     NSDictionary *responseDict = [jsonString JSONValue];
     jsonDict = [[NSMutableDictionary alloc] initWithDictionary:responseDict copyItems:YES];
-    int i = 0;
-    while (i < [responseDict count]) {
-        UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",i+1]] objectForKey:@"thumbnail"]]]]];
-        [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(tempImage) forKey:[NSString stringWithFormat:@"imageForxActivity%d",i]];
-        i++;
     }
-    [tableData reloadData];
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [jsonDict count];
@@ -56,9 +77,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     UIImageView *imageViews = (UIImageView*)[cell viewWithTag:1];
-    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"imageForxActivity%d",indexPath.row]];
-    [imageViews setImage:[UIImage imageWithData:imageData]];
-    // [imageViews setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"thumbnail"]]]]]];
+//    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"imageForxActivity%d",indexPath.row]];
+//    [imageViews setImage:[UIImage imageWithData:imageData]];
+    [imageViews setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"thumbnail"]]]]]];
     UILabel *title = (UILabel*)[cell viewWithTag:2];
     [title setText:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.row+1]] objectForKey:@"title"]]];
     UILabel *intro = (UILabel*)[cell viewWithTag:3];

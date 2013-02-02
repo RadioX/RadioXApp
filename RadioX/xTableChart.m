@@ -9,6 +9,7 @@
 #import "xTableChart.h"
 #import "SBJson.h"
 #import "MBProgressHUD.h"
+#import "ASIHTTPRequest.h"
 
 @interface xTableChart ()
 
@@ -19,29 +20,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [tableData setDelegate:self];
-    [tableData setDataSource:self];
-    [self performSelector:@selector(loadItem) withObject:nil afterDelay:.001];
     UIImage *image = [UIImage imageNamed: @"logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
-    
     [self.logoOutlet setTitleView:imageView];
+    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/chart"];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request startAsynchronous];
     
 }
 
--(void)loadItem{
-    NSURL *url = [NSURL URLWithString:@"http://www.iloveradiox.com/json/chart"];
-    NSString *jsonString = [self performStoreRequestWithURL:url];
-    NSDictionary *responseDict = [jsonString JSONValue];
-    jsonDict = [[NSMutableDictionary alloc] initWithDictionary:responseDict copyItems:YES];
-    int i = 0;
-    while (i < [responseDict count]) {
-        UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",i+1]] objectForKey:@"image"]]]]];
-        [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(tempImage) forKey:[NSString stringWithFormat:@"imageForTableChart%d",i]];
-        i++;
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    if (request.responseStatusCode == 400) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Code 400 " delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:@"Cancel",nil ];
+        [alert show];
+    } else if (request.responseStatusCode == 403) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Code already used" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:@"Cancel",nil ];
+        [alert show];
+    } else if (request.responseStatusCode == 200) {
+        NSString *jsonString = [request responseString];
+        NSLog(@"%@",jsonString);
+        NSDictionary *responseDict = [jsonString JSONValue];
+        jsonDict = [[NSMutableDictionary alloc] initWithDictionary:responseDict copyItems:YES];
+        int i = 0;
+        while (i < [responseDict count]) {
+            UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[jsonDict objectForKey:[NSString stringWithFormat:@"%d",i+1]] objectForKey:@"image"]]]]];
+            [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(tempImage) forKey:[NSString stringWithFormat:@"imageForTableChart%d",i]];
+            i++;
+        }
+        
+        [tableData setDelegate:self];
+        [tableData setDataSource:self];
+        [tableData reloadData];
     }
-    [tableData reloadData];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
